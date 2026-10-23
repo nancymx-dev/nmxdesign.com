@@ -42,6 +42,7 @@ describe('Homepage', () => {
     expect(screen.getByText('Worked at')).toBeTruthy();
     expect(screen.getByAltText('Atlassian logo')).toBeTruthy();
     expect(screen.getByAltText('ReadyTech logo')).toBeTruthy();
+    expect(screen.getByAltText('Constantinople logo')).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Jump to bottom of page' }).getAttribute('href')).toBe(
       '#page-bottom',
     );
