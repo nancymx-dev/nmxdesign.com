@@ -123,15 +123,25 @@ export default function PasswordGate() {
             {isLab ? 'Explore the AI Lab' : 'View case study'}
           </button>
         </form>
-        <p className="mt-6 text-center text-xs text-[#52685a]">
-          Need access?{' '}
+        <div className="mt-6 text-center text-xs leading-6 text-[#52685a]">
+          <p>
+            Need access? Email{' '}
+            <a
+              className="break-all text-[#68659e] underline underline-offset-4"
+              href="mailto:nmxdesignau@gmail.com"
+            >
+              nmxdesignau@gmail.com
+            </a>
+          </p>
           <a
             className="text-[#68659e] underline underline-offset-4"
-            href="mailto:nmxdesignau@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=nmxdesignau%40gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Get in touch
+            Open in Gmail
           </a>
-        </p>
+        </div>
       </section>
     </div>,
     document.body,

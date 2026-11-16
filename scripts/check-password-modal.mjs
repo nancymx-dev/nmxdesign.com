@@ -16,6 +16,18 @@ try {
       await page.goto(`${base}${path}`);
       const dialog = page.getByRole('dialog');
       await dialog.waitFor();
+      const email = await page
+        .getByRole('link', { name: 'nmxdesignau@gmail.com' })
+        .getAttribute('href');
+      const gmail = new URL(
+        await page.getByRole('link', { name: 'Open in Gmail' }).getAttribute('href'),
+      );
+      if (
+        email !== 'mailto:nmxdesignau@gmail.com' ||
+        gmail.hostname !== 'mail.google.com' ||
+        gmail.searchParams.get('to') !== 'nmxdesignau@gmail.com'
+      )
+        throw new Error('Contact links are incorrect');
       const result = await dialog.evaluate((el) => {
         const r = el.getBoundingClientRect();
         const x = r.left + r.width / 2,
