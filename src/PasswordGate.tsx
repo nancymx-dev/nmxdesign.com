@@ -123,25 +123,49 @@ export default function PasswordGate() {
             {isLab ? 'Explore the AI Lab' : 'View case study'}
           </button>
         </form>
-        <div className="mt-6 text-center text-xs leading-6 text-[#52685a]">
-          <p>
-            Need access? Email{' '}
-            <a
-              className="break-all text-[#68659e] underline underline-offset-4"
-              href="mailto:nmxdesignau@gmail.com"
+        <details className="group mt-6 text-center text-xs text-[#52685a]">
+          <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#184027] [&::-webkit-details-marker]:hidden">
+            Need access?{' '}
+            <span className="font-medium text-[#55518d] underline underline-offset-4">
+              Get in touch
+            </span>
+            <svg
+              aria-hidden="true"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              className="ml-0.5 text-[#55518d] transition-transform group-open:rotate-180"
             >
-              nmxdesignau@gmail.com
-            </a>
-          </p>
-          <a
-            className="text-[#68659e] underline underline-offset-4"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=nmxdesignau%40gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open in Gmail
-          </a>
-        </div>
+              <path
+                d="m2.5 4.5 3.5 3 3.5-3"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </summary>
+          <div className="mt-2 rounded-lg bg-[#f2efe9] px-4 py-3 text-sm leading-6">
+            <p className="break-all font-medium text-[#184027]">nmxdesignau@gmail.com</p>
+            <div className="mt-1 flex flex-wrap justify-center gap-x-5">
+              <a
+                className="text-[#55518d] underline underline-offset-4"
+                href="mailto:nmxdesignau@gmail.com"
+              >
+                Email app
+              </a>
+              <a
+                className="text-[#55518d] underline underline-offset-4"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=nmxdesignau%40gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open Gmail
+              </a>
+            </div>
+          </div>
+        </details>
       </section>
     </div>,
     document.body,

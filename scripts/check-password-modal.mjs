@@ -16,11 +16,10 @@ try {
       await page.goto(`${base}${path}`);
       const dialog = page.getByRole('dialog');
       await dialog.waitFor();
-      const email = await page
-        .getByRole('link', { name: 'nmxdesignau@gmail.com' })
-        .getAttribute('href');
+      await page.getByText('Get in touch', { exact: true }).click();
+      const email = await page.getByRole('link', { name: 'Email app' }).getAttribute('href');
       const gmail = new URL(
-        await page.getByRole('link', { name: 'Open in Gmail' }).getAttribute('href'),
+        await page.getByRole('link', { name: 'Open Gmail' }).getAttribute('href'),
       );
       if (
         email !== 'mailto:nmxdesignau@gmail.com' ||
