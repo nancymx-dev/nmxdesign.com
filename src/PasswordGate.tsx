@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const ACCESS_KEY = 'nmx-portfolio-unlocked';
@@ -25,14 +26,14 @@ export default function PasswordGate() {
 
   if (unlocked) return <Outlet />;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#18281c]/45 p-5">
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex overflow-y-auto bg-[#18281c]/45 p-5">
       <section
         role="dialog"
         aria-modal="true"
         aria-labelledby="gate-title"
         aria-describedby="gate-description"
-        className="relative w-full max-w-[480px] rounded-3xl border border-white bg-[#fffbf6] px-6 pb-9 pt-11 text-center shadow-[0_24px_90px_rgba(20,38,25,0.22)] sm:px-12"
+        className="relative m-auto w-full max-w-[480px] rounded-3xl border border-white bg-[#fffbf6] px-6 pb-9 pt-11 text-center shadow-[0_24px_90px_rgba(20,38,25,0.22)] sm:px-12"
       >
         <Link
           to="/"
@@ -132,6 +133,7 @@ export default function PasswordGate() {
           </a>
         </p>
       </section>
-    </div>
+    </div>,
+    document.body,
   );
 }
