@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import App from './App.tsx';
+import PasswordGate from './PasswordGate.tsx';
 import Homepage from './Homepage.tsx';
 import './index.css';
 import Resume from './Resume.tsx';
@@ -37,32 +38,55 @@ const router = createBrowserRouter([
       { path: 'demo', element: <Navigate to="/case-studies" replace /> },
       { path: 'demos', element: <Navigate to="/case-studies" replace /> },
 
-      { path: 'case-studies', element: withSuspense(<CaseStudies />) },
-      { path: 'case-studies/uplinked', element: withSuspense(<UplinkPage />) },
-      { path: 'case-studies/jiraplaybook', element: withSuspense(<JiraPlaybookPage />) },
-      { path: 'case-studies/apex-wrapped', element: withSuspense(<ApexWrappedPage />) },
-      { path: 'case-studies/modc', element: withSuspense(<MODCCaseStudyPage />) },
-      { path: 'case-studies/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
-      { path: 'case-studies/:projectId', element: withSuspense(<ProjectPage />) },
+      {
+        element: <PasswordGate />,
+        children: [
+          { path: 'case-studies', element: withSuspense(<CaseStudies />) },
+          { path: 'case-studies/uplinked', element: withSuspense(<UplinkPage />) },
+          { path: 'case-studies/jiraplaybook', element: withSuspense(<JiraPlaybookPage />) },
+          { path: 'case-studies/apex-wrapped', element: withSuspense(<ApexWrappedPage />) },
+          { path: 'case-studies/modc', element: withSuspense(<MODCCaseStudyPage />) },
+          {
+            path: 'case-studies/apexwrapped',
+            element: <Navigate to="/case-studies/apex-wrapped" replace />,
+          },
+          { path: 'case-studies/:projectId', element: withSuspense(<ProjectPage />) },
 
-      { path: 'ai-lab', element: withSuspense(<AiLabPage />) },
-      { path: 'ai-lab/:entryId', element: withSuspense(<AiLabEntryPage />) },
+          { path: 'ai-lab', element: withSuspense(<AiLabPage />) },
+          { path: 'ai-lab/:entryId', element: withSuspense(<AiLabEntryPage />) },
+        ],
+      },
 
       // Legacy /case-study routes → redirect to /case-studies
       { path: 'case-study', element: <Navigate to="/case-studies" replace /> },
       { path: 'case-study/uplinked', element: <Navigate to="/case-studies/uplinked" replace /> },
-      { path: 'case-study/jiraplaybook', element: <Navigate to="/case-studies/jiraplaybook" replace /> },
-      { path: 'case-study/apex-wrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      {
+        path: 'case-study/jiraplaybook',
+        element: <Navigate to="/case-studies/jiraplaybook" replace />,
+      },
+      {
+        path: 'case-study/apex-wrapped',
+        element: <Navigate to="/case-studies/apex-wrapped" replace />,
+      },
       { path: 'case-study/modc', element: <Navigate to="/case-studies/modc" replace /> },
-      { path: 'case-study/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      {
+        path: 'case-study/apexwrapped',
+        element: <Navigate to="/case-studies/apex-wrapped" replace />,
+      },
       { path: 'case-study/:projectId', element: <PortfolioRedirect /> },
 
       // Legacy /portfolio routes → redirect to /case-studies
       { path: 'portfolio', element: <Navigate to="/case-studies" replace /> },
       { path: 'portfolio/uplinked', element: <Navigate to="/case-studies/uplinked" replace /> },
-      { path: 'portfolio/apex-wrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      {
+        path: 'portfolio/apex-wrapped',
+        element: <Navigate to="/case-studies/apex-wrapped" replace />,
+      },
       { path: 'portfolio/modc', element: <Navigate to="/case-studies/modc" replace /> },
-      { path: 'portfolio/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      {
+        path: 'portfolio/apexwrapped',
+        element: <Navigate to="/case-studies/apex-wrapped" replace />,
+      },
       {
         path: 'portfolio/jiraplaybook',
         element: <Navigate to="/case-studies/jiraplaybook" replace />,
